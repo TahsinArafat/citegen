@@ -1,0 +1,61 @@
+.citegen-citation-wrapper {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.citegen-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.citegen-style {
+    display: flex;
+    align-items: center;
+}
+
+.citegen-style label {
+    margin-right: 10px;
+}
+
+.citegen-style-select {
+    margin-right: 10px;
+}
+
+.citegen-copy-button {
+    padding: 5px 5px;
+    background-color: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.citegen-citation {
+    font-size: 0.9em;
+    color: #333;
+    line-height: 1.5;
+}
+
+.citegen-citation a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.citegen-citation a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 400px) {
+    .citegen-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .citegen-style {
+        margin-bottom: 10px;
+    }
+}
