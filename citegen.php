@@ -108,7 +108,7 @@ add_filter('the_content', 'citegen_append_citation');
 // Enqueue scripts and styles
 function citegen_enqueue_assets()
 {
-    wp_enqueue_script('citegen-script', plugins_url('citegen.js', __FILE__), [], '1.1', true);
+    wp_enqueue_script('citegen-script', plugins_url('citegen.js', __FILE__), [], '1.2', true);
     wp_enqueue_style('citegen-style', plugins_url('citegen.css', __FILE__), [], '1.2');
 }
 add_action('wp_enqueue_scripts', 'citegen_enqueue_assets');
