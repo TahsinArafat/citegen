@@ -3,7 +3,6 @@
   <p><strong>WordPress Plugin for Automatic APA & MLA Citations</strong></p>
   <p>
     <a href="https://github.com/TahsinArafat/citegen"><img src="https://img.shields.io/badge/WordPress-Plugin-blue?logo=wordpress" alt="WordPress Plugin"></a>
-    <a href="#license"><img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License"></a>
   </p>
 </div>
 
