@@ -13,12 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const time = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
             let accessedDate;
             if (style === 'apa') {
-                accessedDate = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date) + ', ' + time;
+                // APA format: Retrieved Month Day, Year, Time
+                accessedDate = 'Retrieved ' + new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date) + ', ' + time;
             } else {
-                accessedDate = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(date) + ', ' + time;
+                // MLA format: Accessed Day Month Year, Time
+                accessedDate = 'Accessed ' + new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(date) + ', ' + time;
             }
-            const fullHtml = baseHtml + ' Accessed ' + accessedDate + '.';
-            const fullText = baseText + ' Accessed ' + accessedDate + '.';
+            const fullHtml = baseHtml + ' ' + accessedDate + '.';
+            const fullText = baseText + ' ' + accessedDate + '.';
             citationP.innerHTML = fullHtml;
             wrapper.dataset.fullText = fullText;
         }
@@ -29,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
         copyButton.addEventListener('click', function() {
             const text = wrapper.dataset.fullText;
             navigator.clipboard.writeText(text).then(() => {
+                const originalText = copyButton.textContent;
                 copyButton.textContent = 'Copied!';
                 setTimeout(() => {
-                    copyButton.textContent = 'Copy';
+                    copyButton.textContent = originalText;
                 }, 2000);
             }).catch(() => {
                 alert('Failed to copy citation');
