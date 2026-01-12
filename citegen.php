@@ -3,8 +3,11 @@
 Plugin Name: CiteGen
 Description: Automatically generates APA and MLA citations for posts and pages with style selection and copy functionality. This plugin is supported by the Co-Authors Plus plugin for multiple authors.
 Version: 2.0
-Author URI: https://github.com/TahsinArafat
 Author: Tahsin Arafat
+Author URI: https://github.com/TahsinArafat
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: citegen
 */
 
 // Exit if accessed directly outside of WordPress
@@ -54,6 +57,7 @@ function citegen_settings_page()
         return;
     }
     
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress settings API handles nonce verification
     if (isset($_GET['settings-updated'])) {
         add_settings_error('citegen_messages', 'citegen_message', 'Settings Saved', 'updated');
     }
@@ -135,7 +139,7 @@ function citegen_author_format($user, $style)
 }
 
 // Generate base citation with HTML and plain text versions
-function generate_base_citation($post, $style)
+function citegen_generate_base_citation($post, $style)
 {
     $author = '';
     $authors = [];
@@ -191,8 +195,8 @@ function citegen_generate_html($post = null)
         global $post;
     }
     
-    $apa = generate_base_citation($post, 'apa');
-    $mla = generate_base_citation($post, 'mla');
+    $apa = citegen_generate_base_citation($post, 'apa');
+    $mla = citegen_generate_base_citation($post, 'mla');
     $preset = get_option('citegen_ui_preset', 'default');
     
     $citation_html = '<div class="citegen-citation-wrapper citegen-preset-' . esc_attr($preset) . '" data-apa-html="' . esc_attr($apa['html']) . '" data-apa-text="' . esc_attr($apa['text']) . '" data-mla-html="' . esc_attr($mla['html']) . '" data-mla-text="' . esc_attr($mla['text']) . '">';
