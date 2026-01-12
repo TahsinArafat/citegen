@@ -12,13 +12,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Sanitize boolean callback
+function citegen_sanitize_boolean($value)
+{
+    return filter_var($value, FILTER_VALIDATE_BOOLEAN);
+}
+
 // Register default settings
 function citegen_register_settings()
 {
     register_setting('citegen_settings', 'citegen_auto_show', [
         'type' => 'boolean',
         'default' => true,
-        'sanitize_callback' => 'rest_sanitize_boolean'
+        'sanitize_callback' => 'citegen_sanitize_boolean'
     ]);
     register_setting('citegen_settings', 'citegen_ui_preset', [
         'type' => 'string',
@@ -104,7 +110,6 @@ function citegen_settings_page()
     </div>
     <?php
 }
-
 
 function citegen_author_format($user, $style)
 {
